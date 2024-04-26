@@ -2,6 +2,7 @@
 
 mod config;
 mod downloader;
+mod io;
 
 use std::{
     collections::HashMap,
@@ -57,9 +58,11 @@ impl DownloadPlan {
             let writer = fs_io.writer_from_artifact(&s_name, &s).await?;
             let (reader, total_bytes) = match s {
                 Source::Github(s) => {
-                    crate::downloader::github::download_artifact(&client, s)
+                    crate::downloader::github::download_artifact(&client, &s)
                         .await
-                        .wrap_err("failed to download github source: {s:?}")?
+                        .wrap_err_with(|| {
+                            format!("failed to download github source: {s:?}")
+                        })?
                 }
             };
             let style = ProgressStyle::with_template("{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({msg})")

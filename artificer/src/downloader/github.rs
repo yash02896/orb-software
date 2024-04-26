@@ -12,7 +12,7 @@ use super::Client;
 
 pub async fn download_artifact(
     client: &Client,
-    source: sources::Github,
+    source: &sources::Github,
 ) -> Result<(Box<dyn AsyncRead + Send>, u64)> {
     let Some((owner, repo)) = source.repo.split_once('/') else {
         bail!("invalid repo url: expected `/` but was not present");

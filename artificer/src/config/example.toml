@@ -31,10 +31,9 @@ hash = "sha256-uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek="
 [artifacts.orb-core]
 source = "github"
 repo = "worldcoin/orb-core"
-# Consuming `latest` tags are bad practice, as the contents of the artifact will change.
 tag = "latest" 
 artifact = "orb-core-artifacts.tar.gz"
-# For this reason we set `hash=false`, which will warn instead of error when the hash
+# You can set `hash=false`, which will warn instead of error when the hash
 # in the lockfile changes. It also means that artificer will always attempt to
 # redownload this artifact, to be sure we have the latest version.
 # This also requires us to pass `--allow-mutable-artifacts` on the CLI.
