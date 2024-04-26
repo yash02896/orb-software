@@ -203,6 +203,7 @@ dependencies = [
  "reqwest",
  "semver",
  "serde",
+ "ssri",
  "tokio",
  "tokio-util",
  "toml",

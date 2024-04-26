@@ -2,6 +2,9 @@
 
 mod config;
 mod downloader;
+mod store;
+
+pub use ::ssri;
 
 use std::{
     collections::HashMap,
